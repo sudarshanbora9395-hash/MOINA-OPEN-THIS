@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Special Surprise For You 💖</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(120deg, #ffafbd, #ffc3a0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+        color: #fff;
+    }
+
+    .card {
+        background: rgba(255,255,255,0.9);
+        color: #ff4d6d;
+        padding: 50px 30px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        max-width: 400px;
+        animation: fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
+
+    p {
+        font-size: 18px;
+        margin: 15px 0;
+    }
+
+    button {
+        background: #ff4d6d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #e60039;
+        transform: scale(1.05);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .heart {
+        position: absolute;
+        color: red;
+        animation: float 6s linear infinite;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(20px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes float {
+        0% {transform: translateY(100vh);}
+        100% {transform: translateY(-10vh);}
+    }
+
+    .kiss {
+        font-size: 50px;
+        animation: pop 1s forwards;
+    }
+
+    @keyframes pop {
+        from {transform: scale(0);}
+        to {transform: scale(1);}
+    }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+    <h1>Hey Sweetheart 😘</h1>
+    <p>I made this for you because you mean so much to me 💖</p>
+    <button onclick="nextStep()">Start 💌</button>
+</div>
+
+<script>
+let step = 0;
+
+function nextStep() {
+    const card = document.getElementById('card');
+    step++;
+
+    if(step === 1) {
+        card.innerHTML = `
+            <h1>First thing I want to ask...</h1>
+            <p>Do you know how special you are to me?</p>
+            <button onclick="nextStepYes()">Yes 😍</button>
+            <button onclick="nextStepNo()">No 😢</button>
+        `;
+    }
+}
+
+function nextStepYes() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>Aw, I knew it! 💖</h1>
+        <p>You make my heart beat faster every day ❤️</p>
+        <p>Can I tell you something important?</p>
+        <button onclick="proposalStep()">Yes 💌</button>
+        <button onclick="ignoreStep()">No 😭</button>
+    `;
+}
+
+function nextStepNo() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>Ohhh 😏</h1>
+        <p>Are you trying to be tricky? 😜</p>
+        <p>You can’t say no to my love! 😘</p>
+        <button onclick="nextStepYes()">Okay, I’m yours 💖</button>
+    `;
+}
+
+function ignoreStep() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>Oh nooo! 😭</h1>
+        <p>If you say no, I’ll just have to pester you more 😏💖</p>
+        <button onclick="proposalStep()">Fine, tell me! 💌</button>
+    `;
+}
+
+function proposalStep() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>So here it is... 💖</h1>
+        <p>Will you be mine forever? 😘</p>
+        <button onclick="sheSaysYes()">Yes 💕</button>
+        <button onclick="sheSaysNo()">No 😢</button>
+    `;
+}
+
+function sheSaysYes() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>YAYYYYY! ❤️</h1>
+        <p>You just made me the happiest person alive 😭💖</p>
+        <p>Here’s a kiss for you 😘</p>
+        <div class="kiss">💋</div>
+    `;
+    createHearts();
+}
+
+function sheSaysNo() {
+    const card = document.getElementById('card');
+    card.innerHTML = `
+        <h1>Ohhh 😏</h1>
+        <p>You can’t say no 😘</p>
+        <p>I’ll just keep loving you forever anyway 💖</p>
+        <button onclick="sheSaysYes()">Okay, okay, YES! 💕</button>
+    `;
+}
+
+// Floating hearts
+function createHearts() {
+    setInterval(() => {
+        let heart = document.createElement("div");
+        heart.innerHTML = "❤";
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }, 400);
+}
+</script>
+
+</body>
+</html>
